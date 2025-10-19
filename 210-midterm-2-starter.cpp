@@ -269,11 +269,21 @@ int main()
 
     list.print(names);
 
-    int prob = rand() % 100 + 1;  // returns random number 1-100
-    if (prob <= 40)
+    for (int i = 1; i < 20; ++i)
     {
-        // event A
+        cout << "Tme step #" << i + 1 << ":" << endl;
+        int prob = rand() % 100 + 1;  // returns random number 1-100
+        if (prob <= 40)
+        {
+
+        }
+
+        if (prob <= 60)
+        {
+
+        }
     }
+
 
     return 0;
 }
