@@ -161,6 +161,24 @@ class DoublyLinkedList
         return tail -> data;
     }
 
+    int get_value_at_position(int pos) 
+    {
+        Node *node = head;
+        int idx = 0;
+        while (node != nullptr && idx != pos)
+        {
+            idx++;
+            node = node -> next;
+        }
+
+        if (node != nullptr)
+        {
+            return node -> data;
+        }
+
+        return -1;
+    }
+
     void pop_front() 
     {
         if (!head) 
@@ -287,7 +305,14 @@ int main()
             // Comment #14: Add VIP to front of line with 10% chance.
             int randNum = rand() % 100;
             cout << "\t" << names[randNum] << " (VIP) joins the front of the line" << endl;      
-            list.push_back(randNum);
+            list.push_front(randNum);
+
+            int randPosLeaveLine = rand() % 5;
+            int nodeValue = list.get_value_at_position(randPosLeaveLine);
+            if (nodeValue != -1)
+            {
+                
+            }
         }
 
         if (prob <= 20) // Comment #15: 20% chance that person at back leaves line and removed from the back.
