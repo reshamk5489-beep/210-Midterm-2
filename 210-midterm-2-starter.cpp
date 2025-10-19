@@ -238,6 +238,8 @@ class DoublyLinkedList
 
 int main() 
 {
+    srand(time(0));
+
     vector<string> names;
     string name;
 
@@ -250,12 +252,20 @@ int main()
     
     inFile.close();
 
-    for (int i = 1; i < MAX_NR; ++i)
+    for (int i = 0; i < MAX_NR; ++i)
     {
         cout << names[i] << endl;
     }
 
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid compiler warning
 
+
+    cout << "Store opens:" << endl;
+    // Read 5 names sequentially from randNum
+    for (int i = 0; i < 5; ++i)
+    {
+        int randNum = rand() % 100; // Generate random number from 0 to 99.
+        cout << names[randNum] << " joins the line" << endl;        
+    }
     return 0;
 }
