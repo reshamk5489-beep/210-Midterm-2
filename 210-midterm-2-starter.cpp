@@ -151,6 +151,16 @@ class DoublyLinkedList
         }
     }
 
+    int get_front_value() 
+    {
+        return head -> data;
+    }
+
+    int get_back_value() 
+    {
+        return tail -> data;
+    }
+
     void pop_front() 
     {
         if (!head) 
@@ -213,8 +223,6 @@ class DoublyLinkedList
             cout << "\t\t" << names[current -> data] << endl;
             current = current -> next;
         }
-
-        cout << endl;
     }
 
     void print_reverse() 
@@ -262,7 +270,7 @@ int main()
     {
         int randNum = rand() % 100; // Generate random number from 0 to 99.
         cout << "\t" << names[randNum] << " joins the line" << endl;      
-        list.push_back(randNum);
+        list.push_back(randNum); // storing random number in the linked list instead of names.
     }
 
     cout << "\tResulting Line:" << endl;
@@ -275,13 +283,19 @@ int main()
         int prob = rand() % 100 + 1;  // returns random number 1-100
         if (prob <= 40)
         {
-
+            int frontValue = list.get_back_value();
+            string nameIsServed = names[frontValue];
+            cout << "\t" << nameIsServed << " is served" << endl;
         }
 
         if (prob <= 60)
         {
 
         }
+
+        cout << "\tResulting Line:" << endl;
+
+        list.print(names);
     }
 
 
