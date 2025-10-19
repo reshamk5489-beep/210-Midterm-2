@@ -246,42 +246,51 @@ class DoublyLinkedList
 
 int main() 
 {
-    srand(time(0));
+    srand(time(0)); // Comment #1: Seed the random number generator.
 
-    vector<string> names;
+    vector<string> names; // Comment #2: Vector to store names from file.
     string name;
 
-    ifstream inFile("names.txt");
+    ifstream inFile("names.txt"); // Comment #3: Open the file names.txt for reading.
 
-    while (getline(inFile, name))
+    while (getline(inFile, name)) // Comment #4: Read each name from the file and add to the vector until the end of file is reached.
     {
-        names.push_back(name);
+        names.push_back(name); // Comment #5: Add the read name to the vector.
     }
     
-    inFile.close();
+    inFile.close(); // Comment #6: Close the file after reading all names.
 
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid compiler warning
 
-    DoublyLinkedList list;
+    DoublyLinkedList list; // Comment #7: Create a DoublyLinkedList object.
 
     cout << endl << "Store opens:" << endl;
-    // Read 5 names sequentially from randNum
+    // Comment #8: Read 5 names randomly from vector.
     for (int i = 0; i < 5; ++i)
     {
-        int randNum = rand() % 100; // Generate random number from 0 to 99.
+        int randNum = rand() % 100; // Comment #9: Generate random number from 0 to 99.
         cout << "\t" << names[randNum] << " joins the line" << endl;      
-        list.push_back(randNum); // storing random number in the linked list instead of names.
+        list.push_back(randNum); // Comment #10: Storing random number in the linked list instead of names.
     }
 
     cout << "\tResulting Line:" << endl;
 
-    list.print(names);
+    list.print(names); // Comment #11: Print the names in the linked list.
 
-    for (int i = 1; i < 20; ++i)
+    for (int i = 1; i < 20; ++i) // Comment #12: Simulate 19 time steps.
     {
         cout << "Tme step #" << i + 1 << ":" << endl;
-        int prob = rand() % 100 + 1;  // returns random number 1-100
-        if (prob <= 40)
+        int prob = rand() % 100 + 1;  // Comment #13: Returns random number 1-100.
+
+        if (prob <= 20) // Comment #14: 20% chance that person at back leaves line and removed from the back.
+        {
+            list.pop_back();
+            int backValue = list.get_back_value();
+            string nameLeftLine = names[backValue];
+            cout << "\t" << nameLeftLine << " left the line" << endl;
+        }
+
+        if (prob <= 40) // Comment #15: 40% chance that person at front is served and remmoved from the front.
         {
             int frontValue = list.get_front_value();
             string nameIsServed = names[frontValue];
@@ -289,18 +298,17 @@ int main()
             list.pop_front();
         }
 
-        if (prob <= 60)
+        if (prob <= 60) // Comment #16: 60% chance that a new person joins the line and added to the back.
         {
-            int randNum = rand() % 100; // Generate random number from 0 to 99.
+            int randNum = rand() % 100;
             cout << "\t" << names[randNum] << " joined the line" << endl;      
-            list.push_back(randNum); // storing random number in the linked list instead of names.
+            list.push_back(randNum);
         }
 
         cout << "\tResulting Line:" << endl;
 
         list.print(names);
     }
-
 
     return 0;
 }
