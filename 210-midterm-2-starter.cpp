@@ -282,15 +282,23 @@ int main()
         cout << "Tme step #" << i + 1 << ":" << endl;
         int prob = rand() % 100 + 1;  // Comment #13: Returns random number 1-100.
 
-        if (prob <= 20) // Comment #14: 20% chance that person at back leaves line and removed from the back.
+        if (prob <= 10)
         {
-            list.pop_back();
+            // Comment #14: Add VIP to front of line with 10% chance.
+            int randNum = rand() % 100;
+            cout << "\t" << names[randNum] << " (VIP) joins the front of the line" << endl;      
+            list.push_back(randNum);
+        }
+
+        if (prob <= 20) // Comment #15: 20% chance that person at back leaves line and removed from the back.
+        {
             int backValue = list.get_back_value();
             string nameLeftLine = names[backValue];
             cout << "\t" << nameLeftLine << " left the line" << endl;
+            list.pop_back();
         }
 
-        if (prob <= 40) // Comment #15: 40% chance that person at front is served and remmoved from the front.
+        if (prob <= 40) // Comment #16: 40% chance that person at front is served and remmoved from the front.
         {
             int frontValue = list.get_front_value();
             string nameIsServed = names[frontValue];
@@ -298,7 +306,7 @@ int main()
             list.pop_front();
         }
 
-        if (prob <= 60) // Comment #16: 60% chance that a new person joins the line and added to the back.
+        if (prob <= 60) // Comment #17: 60% chance that a new person joins the line and added to the back.
         {
             int randNum = rand() % 100;
             cout << "\t" << names[randNum] << " joined the line" << endl;      
