@@ -199,7 +199,7 @@ class DoublyLinkedList
         }
     }
 
-    void print() 
+    void print(vector<string> names) 
     {
         Node * current = head;
         if (!current) 
@@ -210,7 +210,7 @@ class DoublyLinkedList
 
         while (current) 
         {
-            cout << current -> data << " ";
+            cout << "\t\t" << names[current -> data] << endl;
             current = current -> next;
         }
 
@@ -252,25 +252,22 @@ int main()
     
     inFile.close();
 
-    for (int i = 0; i < MAX_NR; ++i)
-    {
-        cout << names[i] << endl;
-    }
-
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid compiler warning
 
     DoublyLinkedList list;
 
-    cout << "Store opens:" << endl;
+    cout << endl << "Store opens:" << endl;
     // Read 5 names sequentially from randNum
     for (int i = 0; i < 5; ++i)
     {
         int randNum = rand() % 100; // Generate random number from 0 to 99.
-        cout << names[randNum] << " joins the line" << endl;      
+        cout << "\t" << names[randNum] << " joins the line" << endl;      
         list.push_back(randNum);
     }
 
-    list.print();
+    cout << "\tResulting Line:" << endl;
+
+    list.print(names);
 
     int prob = rand() % 100 + 1;  // returns random number 1-100
     if (prob <= 40)
