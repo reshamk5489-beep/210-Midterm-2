@@ -307,15 +307,18 @@ int main()
             cout << "\t" << names[randNum] << " (VIP) joins the front of the line" << endl;      
             list.push_front(randNum);
 
+            // Comment #15: Random person leaves line from random position for 10% chance.
             int randPosLeaveLine = rand() % 5;
             int nodeValue = list.get_value_at_position(randPosLeaveLine);
             if (nodeValue != -1)
             {
-                
+                string nameLeftLine = names[nodeValue];
+                list.delete_pos(randPosLeaveLine);
+                cout << "\t" << nameLeftLine << " (at the rear) left the line" << endl;
             }
         }
 
-        if (prob <= 20) // Comment #15: 20% chance that person at back leaves line and removed from the back.
+        if (prob <= 20) // Comment #16: 20% chance that person at back leaves line and removed from the back.
         {
             int backValue = list.get_back_value();
             string nameLeftLine = names[backValue];
@@ -323,7 +326,7 @@ int main()
             list.pop_back();
         }
 
-        if (prob <= 40) // Comment #16: 40% chance that person at front is served and remmoved from the front.
+        if (prob <= 40) // Comment #17: 40% chance that person at front is served and remmoved from the front.
         {
             int frontValue = list.get_front_value();
             string nameIsServed = names[frontValue];
@@ -331,7 +334,7 @@ int main()
             list.pop_front();
         }
 
-        if (prob <= 60) // Comment #17: 60% chance that a new person joins the line and added to the back.
+        if (prob <= 60) // Comment #18: 60% chance that a new person joins the line and added to the back.
         {
             int randNum = rand() % 100;
             cout << "\t" << names[randNum] << " joined the line" << endl;      
