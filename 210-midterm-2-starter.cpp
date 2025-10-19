@@ -283,14 +283,17 @@ int main()
         int prob = rand() % 100 + 1;  // returns random number 1-100
         if (prob <= 40)
         {
-            int frontValue = list.get_back_value();
+            int frontValue = list.get_front_value();
             string nameIsServed = names[frontValue];
             cout << "\t" << nameIsServed << " is served" << endl;
+            list.pop_front();
         }
 
         if (prob <= 60)
         {
-
+            int randNum = rand() % 100; // Generate random number from 0 to 99.
+            cout << "\t" << names[randNum] << " joined the line" << endl;      
+            list.push_back(randNum); // storing random number in the linked list instead of names.
         }
 
         cout << "\tResulting Line:" << endl;
