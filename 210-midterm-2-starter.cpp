@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <fstream>
 using namespace std;
 
 const int MIN_NR = 10,
@@ -236,6 +238,23 @@ class DoublyLinkedList
 
 int main() 
 {
+    vector<string> names;
+    string name;
+
+    ifstream inFile("names.txt");
+
+    while (getline(inFile, name))
+    {
+        names.push_back(name);
+    }
+    
+    inFile.close();
+
+    for (int i = 1; i < MAX_NR; ++i)
+    {
+        cout << names[i] << endl;
+    }
+
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid compiler warning
 
     return 0;
