@@ -259,13 +259,24 @@ int main()
 
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid compiler warning
 
+    DoublyLinkedList list;
 
     cout << "Store opens:" << endl;
     // Read 5 names sequentially from randNum
     for (int i = 0; i < 5; ++i)
     {
         int randNum = rand() % 100; // Generate random number from 0 to 99.
-        cout << names[randNum] << " joins the line" << endl;        
+        cout << names[randNum] << " joins the line" << endl;      
+        list.push_back(randNum);
     }
+
+    list.print();
+
+    int prob = rand() % 100 + 1;  // returns random number 1-100
+    if (prob <= 40)
+    {
+        // event A
+    }
+
     return 0;
 }
